@@ -1,0 +1,30 @@
+button{
+    color: rgb(6, 196, 243);
+    border-radius: 4px;
+    width: 100px;
+    height: 30px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: 1px solid #D0EEFF;
+    cursor:pointer;
+    margin-top: 10px;
+    overflow: hidden;
+}
+button:hover{
+    background: hsla(220, 100%, 60%, 1);
+    margin-top: 9px;
+    color: floralwhite;
+    animation: none;
+}
+button:active{
+    border-bottom-width: 0;
+    margin-top: 5px;
+}
+#upButton{
+    background-color: transparent;
+    width: 100px;
+}
+#upButton:hover{
+    background-color: blanchedalmond;
+    width: 100px;
+}

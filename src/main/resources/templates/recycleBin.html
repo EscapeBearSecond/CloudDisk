@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/left.css" type="text/css" rel="stylesheet">
+    <link href="/css/table.css" type="text/css" rel="stylesheet">
+    <link href="/css/a.css" type="text/css" rel="stylesheet">
+    <link href="/css/button.css" type="text/css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+<div class="page">
+    <div class="nav-left">
+        <div class="appTitle">
+            <h4>个人云盘</h4>
+        </div>
+        <div class="left-list">
+            <ul>
+                <li>
+                    <a th:href="@{backHome}">全部文件</a>
+                </li>
+                <li>
+                    <a th:href="@{pictures}">图片</a>
+                </li>
+                <li>
+                    <a th:href="@{files}">文档</a>
+                </li>
+                <li>
+                    <a th:href="@{videos}">视频</a>
+                </li>
+                <li>
+                    <a th:href="@{recycleBin}">回收站</a>
+                </li>
+<!--                <li>-->
+<!--                    <a th:href="@{recycleBin}">个人中心</a>-->
+<!--                </li>-->
+            </ul>
+        </div>
+    </div>
+    <div class="right-content">
+<!--        <div class="top-btn" style="display: flex;">-->
+<!--            <button>下载</button>-->
+<!--            <button id="createDir">新建文件夹</button>-->
+<!--            <button>删除</button>-->
+<!--            <form th:action="@{upFile}" method="post" enctype="multipart/form-data" id="upfileForm" style="margin-top: 15px;margin-left: 20px;">-->
+<!--                <input type="file" name="fileName" id="chooseBtn">-->
+<!--                <input type="submit" value="上传">-->
+<!--            </form>-->
+<!--        </div>-->
+        <div class="table-content2">
+            <table class="fl-table" >
+                <thead>
+                <tr>
+                    <th>文件名</th>
+                    <th>文件路径</th>
+                    <th>是否为文件夹</th>
+                    <th>文件大小</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="file:${lists}">
+                    <td th:title="${file.name}" th:if="${file.isDir()}"><a th:href="@{allFiles(path=${file.path})}" th:text="${file.name}"></a></td>
+                    <!--                    <td th:text="${file.name}"></td>-->
+                    <td th:title="${file.name}" th:unless="${file.isDir()}"><p th:text="${file.name}"></p></td>
+                    <td th:title="${file.path}" th:text="${file.path}"></td>
+                    <td th:title="${file.isDir()}" th:text="${file.isDir()}"></td>
+                    <td th:title="${file.len}" th:text="${file.len}"></td>
+                    <td>
+                        <a th:href="@{delete5(filePath=${file.path})}" id="op1" onclick="return confirm('确认彻底删除？')">彻底删除</a>
+                        <a th:href="@{recover(filePath=${file.path},fileName=${file.name})}" id="op2">恢复</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function (){
+        var createDir = document.getElementById("createDir");
+        createDir.onclick = function (){
+            var dirName = prompt("输入文件夹名称","");
+            if (dirName){
+                var href = "http://localhost:8080/createDir?dirName="+dirName;
+                alert(href)
+                window.location.href= href;
+            }else {
+                alert("未输入文件名称！")
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CSS3会员登录窗口模板 - 站长素材</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+
+<div class="login-box">
+  <h2>会员登录</h2>
+  <p th:text="${msg}" style="color: red"></p>
+  <form action="login" method="post">
+    <div class="user-box">
+      <input type="text" name="username" required="">
+      <label>用户名</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" required="">
+      <label>密码</label>
+    </div>
+    <a>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <input type="submit" value="登录" style="background: transparent;color: #a2db1c;border: transparent">
+    </a>
+    <a class="register" th:href="@{register}" style="color: coral;text-decoration: none;font-size: 15px">没有账号？去注册</a>
+  </form>
+
+</div>
+  
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#ffffff">
+<p style="font-size: 40px;color: #6d61ea">Skyward个人云盘</p>
+</div>
+</body>
+</html>

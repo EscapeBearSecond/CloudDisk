@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/left.css" type="text/css" rel="stylesheet">
+    <link href="/css/table.css" type="text/css" rel="stylesheet">
+    <link href="/css/a.css" type="text/css" rel="stylesheet">
+    <link href="/css/button.css" type="text/css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+<div class="page">
+    <div class="nav-left">
+        <div class="appTitle">
+            <h4>个人云盘</h4>
+        </div>
+        <div class="left-list">
+            <ul>
+                <li>
+                    <a th:href="@{backHome}">全部文件</a>
+                </li>
+                <li>
+                    <a th:href="@{pictures}">图片</a>
+                </li>
+                <li>
+                    <a th:href="@{files}">文档</a>
+                </li>
+                <li>
+                    <a th:href="@{videos}">视频</a>
+                </li>
+                <li>
+                    <a th:href="@{recycleBin}">回收站</a>
+                </li>
+<!--                <li>-->
+<!--                    <a th:href="@{recycleBin}">个人中心</a>-->
+<!--                </li>-->
+
+            </ul>
+        </div>
+    </div>
+    <div class="right-content">
+        <div class="top-btn" style="display: flex;">
+            <button>下载</button>
+            <button>删除</button>
+            <div style="margin-top: 15px;display: flex;margin-left: 15px">
+                <p>Hello</p>
+                <a class="filename" th:href="@{personal}" th:text="${username}" style="margin-left: 10px" onclick="return alert3()"></a>
+            </div>
+        </div>
+        <div class="table-content">
+            <table class="fl-table">
+                <thead>
+                    <tr>
+                        <th>文件名</th>
+                        <th>文件路径</th>
+                        <th>文件大小</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="file:${lists}">
+<!--                        <td th:title="${file.name}" th:text="${file.name}"></td>-->
+<!--                        <td th:title="${file.path}" th:text="${file.path}"></td>-->
+<!--                        <td th:title="${file.len}" th:text="${file.len}"></td>-->
+                        <td th:title="${file.name}" class="filename"><a th:href="@{no}" th:text="${file.name}" onclick="return alert2()"></a></td>
+                        <td th:title="${file.path}" th:text="${file.path}"></td>
+                        <td th:title="${file.len}" th:text="${file.len}"></td>
+                        <td>
+                            <a th:href="@{download2(filePath=${file.path})}" id="op1">下载</a>
+                            <a th:href="@{delete4(filePath=${file.path})}" id="op2" onclick="return confirm('确认删除？')">删除</a>
+                            <!--                        <form style="display: inline-block;" th:action="@{rename2}">-->
+                            <!--                            <input type="hidden" name="oldName" th:value="${file.name}">-->
+                            <!--                            <input type="text" name="newName" style="width: 100px;">-->
+                            <!--                            <input type="submit" value="重命名" style="width: 50px; background:blanchedalmond;" id="op3">-->
+                            <!--                        </form>-->
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+<script>
+    var alert2 = function (){
+        alert("暂不支持文件预览功能")
+        return false;
+    }
+    var alert3 = function (){
+        alert("个人中心功能待开发中")
+        return false;
+    }
+</script>
+</body>
+</html>
